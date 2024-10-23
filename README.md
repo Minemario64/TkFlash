@@ -1,2 +1,2 @@
 # TkFlash
- Ftast pased kahhot like game in tkinter
+ Fast paced kahoot like game in tkinter
