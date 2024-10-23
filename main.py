@@ -14,4 +14,6 @@ if isDbEmpty:
     cursor.execute("""CREATE TABLE translates (id INTEGER PRIMARY KEY, Spanish TEXT, English TEXT, Class_id INTEGER)
             """)
 
+
+
 root.mainloop()
