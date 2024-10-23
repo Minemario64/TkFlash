@@ -5,6 +5,12 @@ from getfile import *
 
 root = Tk()
 
+def change_pages(cur_page,new_page):
+    if cur_page == new_page:
+        return "Error : Same Page"
+    closing_page = getattr(PAGES, cur_page)
+    closed = closing_page(root, "clear")
+
 isDbEmpty= is_db_empty("translates.db")
 
 connection = sqlite3.connect("translates.db")
@@ -15,5 +21,6 @@ if isDbEmpty:
             """)
 
 
+connection.close()
 
 root.mainloop()
