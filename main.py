@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import ImageTk,Image
 import sqlite3
 from getfile import *
-from pages import *
+from pages.mainmenu import *
 
 root = Tk()
 root.title("Flashcard Menu")

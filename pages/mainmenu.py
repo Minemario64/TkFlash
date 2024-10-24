@@ -13,4 +13,8 @@ def cards_select(root, type):
     spacer_1 = ttk.Label(root, text="|", foreground="#191919").pack(pady=30)
     menu = OptionMenu(root, menu_var, *menu_options).pack(pady=10)
     spacer_2 = ttk.Label(root, text="|", foreground="#191919").pack(pady=10)
-    start_button = ttk.Button(root, text="Start A Training Session").pack()
+
+    def export_menu(menu):
+        print(menu.get)
+
+    start_button = ttk.Button(root, text="Start A Training Session", command=lambda: export_menu(menu)).pack()
