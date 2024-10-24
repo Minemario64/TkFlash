@@ -5,8 +5,9 @@ from getfile import *
 from pages import *
 
 root = Tk()
+root.title("Flashcard Menu")
 root.config(background="#191919")
-root.geometry("500x500")
+root.geometry("400x400")
 
 def change_pages(cur_page,new_page):
     if cur_page == new_page:
