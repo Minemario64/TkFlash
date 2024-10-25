@@ -1,6 +1,5 @@
 from tkinter import *
 from PIL import ImageTk,Image
-from pages import *
 import pages
 
 class window:
@@ -19,7 +18,8 @@ class window:
 
     def show_window(self, startingPage : str, loadWithPage : bool = False) -> None:
         if loadWithPage:
-            cur_page = getattr(pages.startingPage, startingPage) # type: ignore
+            cur_page = getattr(pages, startingPage) # type: ignore
+            page = cur_page(self)
             self.cur_page = startingPage
 
         self.root.mainloop()
