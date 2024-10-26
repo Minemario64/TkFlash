@@ -7,7 +7,7 @@ def cardselect(self):
     h1style.configure('TLabel', font=('Helvetica', 20, 'bold'), foreground="white", background="#191919")
 
     menu_var = StringVar(value="Select a Flashcard Pack")
-    menu_options = ["PS - Element Orders", "ESP - Direct Object Pronouns"]
+    menu_options = ["PS - Element Orders", "ESP - Verbs"]
 
     def export_menu(menu_var):
         print(menu_var)
