@@ -11,6 +11,7 @@ class window:
         self.icon = winicon
 
         self.root = Tk()
+        self.root.iconbitmap(winicon)
         if geometry is not False:
             self.root.geometry(geometry)
         self.root.title(title)
