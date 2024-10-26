@@ -31,3 +31,6 @@ def tkflash_query_db(db : str, dbTable : str, dbColumnList : list[str], dbCallLi
 
         cursor.execute(f"SELECT {qcolumn} FROM {dbTable} WHERE class_id = {class_id};")
         print(cursor.fetchall())
+
+        connection.commit()
+        connection.close()
