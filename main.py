@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import ImageTk,Image
 import sqlite3
 from getfile import *
-import pagemanager as pg
+import pageManager as pg
 
 isDbEmpty= is_db_empty("translates.db")
 

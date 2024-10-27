@@ -14,10 +14,10 @@ def loadfont(fontpath, private = True, enumerable = False):
     see http://msdn2.microsoft.com/en-us/library/ms533937.aspx
     '''
 
-    if isinstance(fontpath, str):
+    if isinstance(fontpath, bytes):
         pathbuf = create_string_buffer(fontpath)
         AddFontResourceEx = windll.gdi32.AddFontResourceExA
-    elif isinstance(fontpath, unicode): # type: ignore
+    elif isinstance(fontpath, str): # type: ignore
         pathbuf = create_unicode_buffer(fontpath)
         AddFontResourceEx = windll.gdi32.AddFontResourceExW
     else:
