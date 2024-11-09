@@ -2,6 +2,7 @@ from ast import arg
 from tkinter import *
 from PIL import ImageTk,Image
 from questionManager import *
+from timeManager import *
 from tkinter import ttk
 from getfile import *
 from fontLoader import *
@@ -43,8 +44,10 @@ def QuestionPage(self, questionManager : Question):
         ShuffledAnswers = sample(questionManager.answers, len(questionManager.answers))
 
         def MCAnswerSubmission(var : IntVar):
+            questionTimer.stop()
+            time = questionTimer.get_time(3, "")
             if ShuffledAnswers[var.get()] == questionManager.answers[0]:
-                print("You got it")
+                print(f"You got it in {time}")
             else:
                 print("Incorrect")
 
@@ -52,3 +55,5 @@ def QuestionPage(self, questionManager : Question):
             MCAnswers[f"a{{answer}}"] = Radiobutton(self.root, text=questionManager.answers[answer], background="#191919", fg="white", variable=MCAnswers["var"], value=answer, command=lambda: MCAnswerSubmission(MCAnswers["var"]))
             MCAnswers[f"a{{answer}}"].pack(pady=10)
         print(MCAnswers)
+        questionTimer = SpeedrunTimer("mins:secs", "normal")
+        questionTimer.start()
