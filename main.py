@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk,Image
+from questionManager import *
 import sqlite3
 from getfile import *
 import pageManager as pg
@@ -15,3 +16,6 @@ connection.close()
 
 main = pg.window("Flashcard Menu", geometry="400x400")
 main.show_window(loadWithPage=True, startingPage="cardselect")
+test = Question(type="MC", dbColumnList=["id", "Spanish", "English", "class_id"], dbCallList=[1, 2], db="translates.db", dbTable="translates", class_id=0)
+test.create_question()
+main.change_pages(new_page="QuestionPage")

@@ -25,10 +25,10 @@ class window:
 
         self.root.mainloop()
 
-    def change_pages(self, new_page):
+    def change_pages(self, new_page, *args):
         if self.cur_page == new_page:
             return "Error : Same Page"
-        for widget in self.root.winfo_children:
+        for widget in self.root.winfo_children():
             widget.destroy()
-        newPage = getattr(pages.new_page, new_page)
-        page = newPage()
+        newPage = getattr(pages, new_page)
+        page = newPage(*args)
