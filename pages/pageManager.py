@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk,Image
 import pages
+import pages.pages
 
 class window:
 
@@ -19,7 +20,7 @@ class window:
 
     def show_window(self, startingPage : str, loadWithPage : bool = False) -> None:
         if loadWithPage:
-            cur_page = getattr(pages, startingPage) # type: ignore
+            cur_page = getattr(pages.pages, startingPage) # type: ignore
             page = cur_page(self)
             self.cur_page = startingPage
 
@@ -30,5 +31,5 @@ class window:
             return "Error : Same Page"
         for widget in self.root.winfo_children():
             widget.destroy()
-        newPage = getattr(pages, new_page)
+        newPage = getattr(pages.pages, new_page)
         page = newPage(self, *args)

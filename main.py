@@ -1,9 +1,9 @@
 from tkinter import *
 from PIL import ImageTk,Image
-from questionManager import *
+from questions.questionManager import *
 import sqlite3
 from getfile import *
-import pageManager as pg
+import pages.pageManager as pg
 
 isDbEmpty= is_db_empty("translates.db")
 
