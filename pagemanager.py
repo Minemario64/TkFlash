@@ -31,4 +31,4 @@ class window:
         for widget in self.root.winfo_children():
             widget.destroy()
         newPage = getattr(pages, new_page)
-        page = newPage(*args)
+        page = newPage(self, *args)

@@ -10,7 +10,7 @@ from fontLoader import *
 def start_questions(self):
     test = Question(type="MC", dbColumnList=["id", "Spanish", "English", "class_id"], dbCallList=[1, 2], db="translates.db", dbTable="translates", class_id=0)
     test.create_question()
-    self.change_pages("QuestionPage", self, test)
+    self.change_pages("QuestionPage", test)
 
 def cardselect(self):
     loadfont("Lemon Fruit.otf")
@@ -30,6 +30,15 @@ def cardselect(self):
 
     start_button = ttk.Button(self.root, text="Start A Training Session", command=lambda: start_questions(self=self)).pack()
 
+def SingleQuestionResults(self, timerResults : SpeedrunTimer, results : dict):
+    self.root.config(background="#00E100")
+    loadfont("Sweety Rasty.otf")
+    textStyle = ttk.Style()
+    textStyle.configure("paraText", font=('Lemon Fruit', 20), foreground="white", background="#00E100")
+
+    resultLabel = ttk.Label(self.root, text="Test", style="paraText")
+    resultLabel.pack(pady=30, fill=X)
+
 def QuestionPage(self, questionManager : Question):
     loadfont("Lemon Fruit.otf")
     questionStyle = ttk.Style()
@@ -47,9 +56,9 @@ def QuestionPage(self, questionManager : Question):
             questionTimer.stop()
             time = questionTimer.get_time(3, "")
             if ShuffledAnswers[var.get()] == questionManager.answers[0]:
-                print(f"You got it in {time}")
+                self.change_pages("SingleQuestionResults", questionTimer, f"Correct")
             else:
-                print("Incorrect")
+                self.change_pages("SingleQuestionResults", questionTimer, f"Incorrect")
 
         for answer in range(0, len(ShuffledAnswers)):
             MCAnswers[f"a{{answer}}"] = Radiobutton(self.root, text=questionManager.answers[answer], background="#191919", fg="white", variable=MCAnswers["var"], value=answer, command=lambda: MCAnswerSubmission(MCAnswers["var"]))
