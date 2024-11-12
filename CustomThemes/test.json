@@ -1,0 +1,16 @@
+{
+    "Main_bgColor" : "#191919",
+    "Main_fgColor" : "#FFFFFF",
+    "fontStyles" : {
+        "title" : {
+            "fontpath" : "Sweety Rasty.otf",
+            "fontName" : "Sweety Rasty",
+            "fontSize" : 40
+        },
+        "normal" : {
+            "fontpath" : "Sweety Rasty.otf",
+            "fontName" :"Sweety Rasty",
+            "fontSize" : 18
+        }
+    }
+}
