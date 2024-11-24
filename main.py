@@ -1,6 +1,6 @@
 from tkinter import *
-from PIL import ImageTk,Image
 from questions.questionManager import *
+from PIL import ImageTk, Image
 import sqlite3
 from getfile import *
 import pages.pageManager as pg

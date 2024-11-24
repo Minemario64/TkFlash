@@ -1,5 +1,5 @@
 from random import *
-from customErrors import *
+from customerrors import *
 from getfile import *
 
 class Question:

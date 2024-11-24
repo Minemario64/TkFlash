@@ -23,9 +23,18 @@ def cardselect(self):
     def export_menu(menu_var):
         print(menu_var)
 
+    def change_menu_colors(menu):
+        menu.configure(background='#292929', foreground='white', activebackground="#393939", activeforeground="white")
+
+        for index in range(menu.index('end')):
+            menu.entryconfig(index, background='#292929', foreground='white', activebackground="#393939", activeforeground="white")
+
     label = ttk.Label(self.root, text="Select Flashcard Pack", style='TLabel').pack(pady=10)
     spacer_1 = ttk.Label(self.root, text="|", foreground="#191919").pack(pady=20)
-    menu = OptionMenu(self.root, menu_var, *menu_options, command=export_menu).pack(pady=10)
+    menu = OptionMenu(self.root, menu_var, *menu_options, command=export_menu)
+    menu.config(bg="#191919", fg="#FFF", borderwidth=0, highlightthickness=0, activebackground="#292929", activeforeground="#FFF")
+    menu.pack(pady=10)
+    menu.bind("<Map>", lambda event: change_menu_colors(event.widget.nametowidget(event.widget['menu'])))
     spacer_2 = ttk.Label(self.root, text="|", foreground="#191919").pack(pady=10)
 
     start_button = ttk.Button(self.root, text="Start A Training Session", command=lambda: start_questions(self=self)).pack()

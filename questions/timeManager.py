@@ -1,4 +1,4 @@
-from customErrors import *
+from customerrors import *
 import time
 
 class SpeedrunTimer:
