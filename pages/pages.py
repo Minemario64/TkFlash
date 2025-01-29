@@ -37,15 +37,19 @@ def cardselect(self):
     menu.bind("<Map>", lambda event: change_menu_colors(event.widget.nametowidget(event.widget['menu'])))
     spacer_2 = ttk.Label(self.root, text="|", foreground="#191919").pack(pady=10)
 
-    start_button = ttk.Button(self.root, text="Start A Training Session", command=lambda: start_questions(self=self)).pack()
+    buttonStyle = ttk.Style()
+    buttonStyle.configure('SButton.TButton', foreground="black", background="#191919")
+
+    start_button = ttk.Button(self.root, text="Start A Training Session", command=lambda: start_questions(self=self), style='SButton.TButton')
+    start_button.pack(pady=20)
 
 def SingleQuestionResults(self, timerResults : SpeedrunTimer, results : dict):
     self.root.config(background="#00E100")
     loadfont("Sweety Rasty.otf")
     textStyle = ttk.Style()
-    textStyle.configure("paraText", font=('Lemon Fruit', 20), foreground="white", background="#00E100")
+    textStyle.configure("ParaText.TLabel", font=('Sweety Rasty', 20), foreground="white", background="#00E100")
 
-    resultLabel = ttk.Label(self.root, text="Test", style="paraText")
+    resultLabel = ttk.Label(self.root, text="Test", style="ParaText.TLabel")
     resultLabel.pack(pady=30, fill=X)
 
 def QuestionPage(self, questionManager : Question):
