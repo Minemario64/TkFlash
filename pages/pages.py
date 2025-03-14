@@ -43,14 +43,29 @@ def cardselect(self):
     start_button = ttk.Button(self.root, text="Start A Training Session", command=lambda: start_questions(self=self), style='SButton.TButton')
     start_button.pack(pady=20)
 
-def SingleQuestionResults(self, timerResults : SpeedrunTimer, results : dict):
-    self.root.config(background="#00E100")
-    loadfont("Sweety Rasty.otf")
+def SingleQuestionResults(self, timerResults : SpeedrunTimer, results : list):
+    if results[0] == "Correct":
+        bg = "#00DF51"
+    elif results[0] == "Incorrect":
+        bg = "#D8002A"
+        fg = "#FFC9C9"
+    self.root.config(background=bg)
+    loadfont("Lemon Fruit.otf")
     textStyle = ttk.Style()
-    textStyle.configure("ParaText.TLabel", font=('Sweety Rasty', 20), foreground="white", background="#00E100")
+    textStyle.configure("ParaText.TLabel", font=('Lemon Fruit', 40), foreground="white", background=bg)
 
-    resultLabel = ttk.Label(self.root, text="Test", style="ParaText.TLabel")
-    resultLabel.pack(pady=30, fill=X)
+
+    resultLabel = ttk.Label(self.root, text=f"\n{results[0]}", style="ParaText.TLabel")
+    resultLabel.pack(pady=5)
+    if results[0] == "Incorrect":
+        answerStyle = ttk.Style()
+        answerStyle.configure("Answer.TLabel", font=('Lemon Fruit', 20), foreground=fg, background=bg)
+
+        answerLabel = ttk.Label(self.root, text=results[1], style="Answer.TLabel")
+        answerLabel.pack(pady=0)
+
+        actualLabel = Label(self.root, text=results[2], font=("Lemon Fruit", 32), fg="#FFEFEF", bg=bg)
+        actualLabel.pack(pady=20)
 
 def QuestionPage(self, questionManager : Question):
     loadfont("Lemon Fruit.otf")
@@ -68,13 +83,14 @@ def QuestionPage(self, questionManager : Question):
         def MCAnswerSubmission(var : IntVar):
             questionTimer.stop()
             time = questionTimer.get_time(3, "")
+            print(ShuffledAnswers[var.get()])
             if ShuffledAnswers[var.get()] == questionManager.answers[0]:
-                self.change_pages("SingleQuestionResults", questionTimer, f"Correct")
+                self.change_pages("SingleQuestionResults", questionTimer, ["Correct", ShuffledAnswers[var.get()], questionManager.answers[0]])
             else:
-                self.change_pages("SingleQuestionResults", questionTimer, f"Incorrect")
+                self.change_pages("SingleQuestionResults", questionTimer, ["Incorrect", ShuffledAnswers[var.get()], questionManager.answers[0]])
 
         for answer in range(0, len(ShuffledAnswers)):
-            MCAnswers[f"a{{answer}}"] = Radiobutton(self.root, text=questionManager.answers[answer], background="#191919", fg="white", variable=MCAnswers["var"], value=answer, command=lambda: MCAnswerSubmission(MCAnswers["var"]))
+            MCAnswers[f"a{{answer}}"] = Radiobutton(self.root, text=ShuffledAnswers[answer], background="#191919", fg="white", variable=MCAnswers["var"], value=answer, command=lambda: MCAnswerSubmission(MCAnswers["var"]))
             MCAnswers[f"a{{answer}}"].pack(pady=10)
         print(MCAnswers)
         questionTimer = SpeedrunTimer("mins:secs", "normal")
